@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { GameOver } from './Components/GameOver'
 
-type Show = {
-    show: boolean;
-}
 
 export function MemoryGame() {
     
