@@ -20,25 +20,13 @@ export function MemoryGame() {
     }
 
     function handleFlip(card) {
-        if(game.setCard(card.id)) {
-            if(game.secondCard) {
-                if(game.checkMatch()) {
-                    game.clearCards();
-                    if (game.checkGameOver()) {
-                        //Game Over
-                        setGameOver(true)
-                    }
-                }else {
-                    setTimeout(()=>{
-                        //No Match
-                        game.unflipCards();
-                        setCards([...game.cards])
-                    }, 1000)
-                };
-            }
-            
-        }
-
+        game.flipCard(card.id, ()=> {
+            // GameOverCallback
+            setGameOver(true)
+        }, ()=> {
+            //NoMatchCallback
+            setCards([...game.cards])
+        })
         setCards([...game.cards])
     }
 

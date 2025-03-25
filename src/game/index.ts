@@ -106,6 +106,27 @@ let game = {
     
             [this.cards[randomIndex], this.cards[currentIndex]] = [this.cards[currentIndex], this.cards[randomIndex]];// Essa é uma maneira de inverte valores no javaScript.
         }
+    },
+
+    flipCard: function(cardId, gameOverCallBack, noMatchCallback){
+        if(this.setCard(cardId)) {
+            if(this.secondCard) {
+                if(this.checkMatch()) {
+                    this.clearCards();
+                    if (this.checkGameOver()) {
+                        //Game Over
+                        gameOverCallBack();
+                    }
+                }else {
+                    setTimeout(()=>{
+                        //No Match
+                        this.unflipCards();
+                        noMatchCallback();
+                    }, 1000)
+                };
+            }
+            
+        }
     }
 }
 export default game
