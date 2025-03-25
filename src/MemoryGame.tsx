@@ -14,12 +14,37 @@ export function MemoryGame() {
     }, [])
 
     function restart() {
+        game.clearCards()
+        setCards(game.createCardsFromTechs())
         setGameOver(false)
+    }
+
+    function handleFlip(card) {
+        if(game.setCard(card.id)) {
+            if(game.secondCard) {
+                if(game.checkMatch()) {
+                    game.clearCards();
+                    if (game.checkGameOver()) {
+                        //Game Over
+                        setGameOver(true)
+                    }
+                }else {
+                    setTimeout(()=>{
+                        //No Match
+                        game.unflipCards();
+                        setCards([...game.cards])
+                    }, 1000)
+                };
+            }
+            
+        }
+
+        setCards([...game.cards])
     }
 
     return (
         <div>
-            <GameBoard cards={cards}/>
+            <GameBoard handleFlip={handleFlip} cards={cards}/>
             <GameOver show ={gameOver} handleRestart={restart}/>
         </div>
     )
