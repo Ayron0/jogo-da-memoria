@@ -3,11 +3,12 @@ import { GameOver } from './Components/GameOver'
 import { GameBoard } from './Components/GameBoard';
 import game from './game/index'
 
+import { Card } from "./types/types";
 
 export function MemoryGame() {
     
     const [gameOver, setGameOver] = useState(false);
-    const [cards, setCards] = useState([])
+    const [cards, setCards] = useState<Card[]>([]);
 
     useEffect(()=> {
         setCards(game.createCardsFromTechs())
@@ -19,7 +20,7 @@ export function MemoryGame() {
         setGameOver(false)
     }
 
-    function handleFlip(card) {
+    function handleFlip(card: Card) {
         game.flipCard(card.id, ()=> {
             // GameOverCallback
             setGameOver(true)
