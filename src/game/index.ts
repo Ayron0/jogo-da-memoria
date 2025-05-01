@@ -108,7 +108,7 @@ let game = {
         }
     },
 
-    flipCard: function(cardId, gameOverCallBack, noMatchCallback){
+    flipCard: function(cardId: string, gameOverCallBack: () => void, noMatchCallback: () => void){
         if(this.setCard(cardId)) {
             if(this.secondCard) {
                 if(this.checkMatch()) {
