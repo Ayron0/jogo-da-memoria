@@ -1,7 +1,11 @@
 import { Fragment } from "react/jsx-runtime";
 
+interface GameOverProps {
+    show: boolean;
+    handleRestart: () => void;
+}
 
-export function GameOver(props) {
+export function GameOver(props: GameOverProps) {
     return(props.show ?
         <div id="gameOver">
             <div>

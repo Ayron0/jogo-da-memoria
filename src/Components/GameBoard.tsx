@@ -1,6 +1,12 @@
 import { CardElement } from "./CardElement";
+import { Card } from "../types/types";
 
-export function GameBoard(props) {
+interface GameBoardProps {
+    cards: Card[];
+    handleFlip: (card: Card) => void;
+}
+
+export function GameBoard(props: GameBoardProps) {
     return(
         <div id="gameBoard">
             {props.cards.map((card, index)=>

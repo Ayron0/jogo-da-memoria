@@ -1,8 +1,4 @@
-type Card = {
-    id: string;
-    icon: string;
-    flipped: boolean;
-}
+import { Card } from "../types/types";
 
 interface CardElementProps {
     card: Card;
